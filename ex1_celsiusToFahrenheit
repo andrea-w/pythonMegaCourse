@@ -1,0 +1,12 @@
+'''
+Coding Exercise 1
+Section 3, Lecture 26
+Please create a function that converts Celsius degrees to Fahrenheit.
+'''
+
+def cel_to_fah(celsius):
+    f = celsius*1.8 + 32
+    return f
+
+c = input("Enter temperature in degrees Celsius: ")
+print(cel_to_fah(c))
