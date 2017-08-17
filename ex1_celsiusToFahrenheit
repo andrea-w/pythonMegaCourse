@@ -10,4 +10,3 @@ def cel_to_fah(celsius):
 
 c = input("Enter temperature in degrees Celsius: ")
 print(cel_to_fah(c))
-print("something")
