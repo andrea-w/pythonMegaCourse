@@ -7,6 +7,7 @@ Adds stylized markers to map based on volcano data.
 
 import folium
 import pandas
+import io
 
 def get_colour(elev):
     if elev < 1000:
@@ -29,5 +30,11 @@ volcanoG = folium.FeatureGroup(name="Volcanoes")
 for lt, ln, el in zip(lat, lon, elev):
     volcanoG.add_child(folium.CircleMarker(location=[lt, ln], popup = str(el) + " m", fill_color=get_colour(el), radius = 6, color="grey"))
 
+# add polygons to map showing borders of each country
+borderG = folium.FeatureGroup(name="Country Borders")
+borderG.add_child(folium.GeoJson(data=(io.open("world.json", 'r', encoding='utf-8-sig'))))
+
 map.add_child(volcanoG)
+map.add_child(borderG)
+
 map.save("VolcanoesMap.html")
