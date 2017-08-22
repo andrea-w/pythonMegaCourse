@@ -31,8 +31,10 @@ for lt, ln, el in zip(lat, lon, elev):
     volcanoG.add_child(folium.CircleMarker(location=[lt, ln], popup = str(el) + " m", fill_color=get_colour(el), radius = 6, color="grey"))
 
 # add polygons to map showing borders of each country
+# set opacity of polygon depending on size of country's population
 borderG = folium.FeatureGroup(name="Country Borders")
-borderG.add_child(folium.GeoJson(data=(io.open("world.json", 'r', encoding='utf-8-sig'))))
+borderG.add_child(folium.GeoJson(data=io.open("world.json", 'r', encoding='utf-8-sig'),
+    style_function = lambda x: {'fillColor':'purple', 'fillOpacity':round(x['properties']['POP2005']/100000000.00, 3)}))
 
 map.add_child(volcanoG)
 map.add_child(borderG)
