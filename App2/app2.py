@@ -38,5 +38,6 @@ borderG.add_child(folium.GeoJson(data=io.open("world.json", 'r', encoding='utf-8
 
 map.add_child(volcanoG)
 map.add_child(borderG)
+map.add_child(folium.LayerControl())
 
 map.save("VolcanoesMap.html")
